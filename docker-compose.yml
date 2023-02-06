@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgreSQL:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=sviridov
+      - POSTGRES_USER=konstantin
+      - POSTGRES_DB=postgres
+  api:
+    container_name: JavaSpringApp
+    build: .
+    depends_on:
+      - postgreSQL
+    ports:
+      - 8080:8080
